@@ -1,0 +1,127 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "On Boarding API"
+schemes:
+  - "http"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+tags:
+  - name: characters
+    description: Everything about Characters
+
+paths:
+  /usuarios:
+    get:
+      tags:
+        - usuarios
+      description: "Returns all users"
+      operationId: "findAllUsers"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "A list of users."
+          schema:
+            $ref: "#/definitions/UsersDTO"
+        "500":
+          description: "Response with error."
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
+
+
+    post:
+      tags:
+        - usuarios
+      description: "Create a user"
+      operationId: "createUser"
+      parameters:
+        - in: body
+          name: userDTO
+          description: "User save"
+          schema:
+            $ref: '#/definitions/UserDTO'
+      responses:
+        "201":
+          description: "A user created."
+          schema:
+            $ref: "#/definitions/UserDTO"
+        "500":
+          description: "Response with error."
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
+
+  /usuarios/{userId}:
+    get:
+      tags:
+        - usuarios
+      description: "Returns user by id"
+      operationId: "findUserById"
+      produces:
+        - "application/json"
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          type: string
+          pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+          minimum: 1
+          description: "get user by id"
+      responses:
+        "200":
+          description: "A users"
+          schema:
+            $ref: "#/definitions/UserDTO"
+        "500":
+          description: "Response with error."
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
+definitions:
+  UsersDTO:
+    type: "object"
+    required:
+      - "characters"
+    properties:
+      characters:
+        type: "array"
+        items:
+          $ref: "#/definitions/UserDTO"
+  UserDTO:
+    type: "object"
+    required:
+      - "id"
+      - "username"
+      - "email"
+    properties:
+      id:
+        type: "string"
+      username:
+        type: "string"
+      email:
+        type: "string"
+  UserCreateDTO:
+    type: "object"
+    required:
+      - "username"
+      - "email"
+      - "password"
+    properties:
+      username:
+        type: "string"
+      email:
+        type: "string"
+
+
+  ErrorResponse:
+    type: "object"
+    required:
+      - "message"
+    properties:
+      message:
+        type: "string"
