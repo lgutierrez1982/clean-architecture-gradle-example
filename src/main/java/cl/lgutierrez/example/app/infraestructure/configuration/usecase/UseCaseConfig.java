@@ -1,4 +1,4 @@
-package cl.lgutierrez.example.app.infraestructure.configuration;
+package cl.lgutierrez.example.app.infraestructure.configuration.usecase;
 
 import cl.lgutierrez.example.app.domain.port.input.CreateUser;
 import cl.lgutierrez.example.app.domain.port.input.FindUserById;

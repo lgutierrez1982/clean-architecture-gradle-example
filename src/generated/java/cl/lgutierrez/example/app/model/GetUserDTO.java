@@ -7,10 +7,10 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 /**
- * UserDTO
+ * GetUserDTO
  */
 
-public class UserDTO   {
+public class GetUserDTO   {
   @JsonProperty("id")
   private String id = null;
 
@@ -20,7 +20,7 @@ public class UserDTO   {
   @JsonProperty("email")
   private String email = null;
 
-  public UserDTO id(String id) {
+  public GetUserDTO id(String id) {
     this.id = id;
     return this;
   }
@@ -39,7 +39,7 @@ public class UserDTO   {
     this.id = id;
   }
 
-  public UserDTO username(String username) {
+  public GetUserDTO username(String username) {
     this.username = username;
     return this;
   }
@@ -58,7 +58,7 @@ public class UserDTO   {
     this.username = username;
   }
 
-  public UserDTO email(String email) {
+  public GetUserDTO email(String email) {
     this.email = email;
     return this;
   }
@@ -86,10 +86,10 @@ public class UserDTO   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserDTO userDTO = (UserDTO) o;
-    return Objects.equals(this.id, userDTO.id) &&
-        Objects.equals(this.username, userDTO.username) &&
-        Objects.equals(this.email, userDTO.email);
+    GetUserDTO getUserDTO = (GetUserDTO) o;
+    return Objects.equals(this.id, getUserDTO.id) &&
+        Objects.equals(this.username, getUserDTO.username) &&
+        Objects.equals(this.email, getUserDTO.email);
   }
 
   @Override
@@ -100,7 +100,7 @@ public class UserDTO   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UserDTO {\n");
+    sb.append("class GetUserDTO {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");

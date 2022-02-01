@@ -1,13 +1,14 @@
 package cl.lgutierrez.example.app.infraestructure.controller;
 
 import cl.lgutierrez.example.app.UsuariosApi;
-import cl.lgutierrez.example.app.domain.port.input.CreateUser;
-import cl.lgutierrez.example.app.infraestructure.controller.mapper.todomain.DTOToDomainMapper;
-import cl.lgutierrez.example.app.infraestructure.controller.mapper.todto.DomainToDTOMapper;
 import cl.lgutierrez.example.app.domain.model.User;
+import cl.lgutierrez.example.app.domain.port.input.CreateUser;
 import cl.lgutierrez.example.app.domain.port.input.FindUserById;
-import cl.lgutierrez.example.app.model.UserDTO;
-import cl.lgutierrez.example.app.model.UsersDTO;
+import cl.lgutierrez.example.app.infraestructure.controller.mapper.todomain.CreateUserDTOToUserMapper;
+import cl.lgutierrez.example.app.infraestructure.controller.mapper.todto.UserToGetUserDTOMapper;
+import cl.lgutierrez.example.app.model.CreateUserDTO;
+import cl.lgutierrez.example.app.model.GetUserDTO;
+import cl.lgutierrez.example.app.model.GetUsersDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,13 +18,13 @@ public class UserController implements UsuariosApi {
 
   private final FindUserById findUserById;
   private final CreateUser createUser;
-  private final DTOToDomainMapper<UserDTO, User> mapperToDomain;
-  private final DomainToDTOMapper<User, UserDTO> mapperToDTO;
+  private final CreateUserDTOToUserMapper mapperToDomain;
+  private final UserToGetUserDTOMapper mapperToDTO;
 
   public UserController(FindUserById findUserById,
                         CreateUser createUser,
-                        DTOToDomainMapper mapperToDomain,
-                        DomainToDTOMapper mapperToDTO) {
+                        CreateUserDTOToUserMapper mapperToDomain,
+                        UserToGetUserDTOMapper mapperToDTO) {
     this.findUserById = findUserById;
     this.createUser = createUser;
     this.mapperToDomain = mapperToDomain;
@@ -31,18 +32,19 @@ public class UserController implements UsuariosApi {
   }
 
   @Override
-  public ResponseEntity<UserDTO> createUser(UserDTO userDTO) {
-    User userDb = createUser.execute(mapperToDomain.toDomain(userDTO));
+  public ResponseEntity<GetUserDTO> createUser(CreateUserDTO createUserDTO) {
+    User userDb = createUser.execute(mapperToDomain.toDomain(createUserDTO));
     return ResponseEntity.status(HttpStatus.CREATED).body(mapperToDTO.toDTO(userDb));
   }
 
   @Override
-  public ResponseEntity<UsersDTO> findAllUsers() {
+  public ResponseEntity<GetUsersDTO> findAllUsers() {
     return null;
   }
 
   @Override
-  public ResponseEntity<UserDTO> findUserById(String userId) {
+  public ResponseEntity<GetUserDTO> findUserById(String userId) {
     return ResponseEntity.ok(this.mapperToDTO.toDTO(findUserById.execute(userId)));
   }
+
 }

@@ -26,13 +26,11 @@ paths:
         "200":
           description: "A list of users."
           schema:
-            $ref: "#/definitions/UsersDTO"
+            $ref: "#/definitions/GetUsersDTO"
         "500":
           description: "Response with error."
           schema:
             $ref: "#/definitions/ErrorResponse"
-
-
 
     post:
       tags:
@@ -44,12 +42,12 @@ paths:
           name: userDTO
           description: "User save"
           schema:
-            $ref: '#/definitions/UserDTO'
+            $ref: '#/definitions/CreateUserDTO'
       responses:
         "201":
           description: "A user created."
           schema:
-            $ref: "#/definitions/UserDTO"
+            $ref: "#/definitions/GetUserDTO"
         "500":
           description: "Response with error."
           schema:
@@ -76,14 +74,14 @@ paths:
         "200":
           description: "A users"
           schema:
-            $ref: "#/definitions/UserDTO"
+            $ref: "#/definitions/GetUserDTO"
         "500":
           description: "Response with error."
           schema:
             $ref: "#/definitions/ErrorResponse"
 
 definitions:
-  UsersDTO:
+  GetUsersDTO:
     type: "object"
     required:
       - "characters"
@@ -91,8 +89,8 @@ definitions:
       characters:
         type: "array"
         items:
-          $ref: "#/definitions/UserDTO"
-  UserDTO:
+          $ref: "#/definitions/GetUserDTO"
+  GetUserDTO:
     type: "object"
     required:
       - "id"
@@ -105,7 +103,7 @@ definitions:
         type: "string"
       email:
         type: "string"
-  UserCreateDTO:
+  CreateUserDTO:
     type: "object"
     required:
       - "username"
@@ -115,6 +113,8 @@ definitions:
       username:
         type: "string"
       email:
+        type: "string"
+      password:
         type: "string"
 
 

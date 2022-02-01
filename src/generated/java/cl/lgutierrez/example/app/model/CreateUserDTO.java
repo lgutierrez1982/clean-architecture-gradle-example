@@ -7,17 +7,20 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 /**
- * UserCreateDTO
+ * CreateUserDTO
  */
 
-public class UserCreateDTO   {
+public class CreateUserDTO   {
   @JsonProperty("username")
   private String username = null;
 
   @JsonProperty("email")
   private String email = null;
 
-  public UserCreateDTO username(String username) {
+  @JsonProperty("password")
+  private String password = null;
+
+  public CreateUserDTO username(String username) {
     this.username = username;
     return this;
   }
@@ -36,7 +39,7 @@ public class UserCreateDTO   {
     this.username = username;
   }
 
-  public UserCreateDTO email(String email) {
+  public CreateUserDTO email(String email) {
     this.email = email;
     return this;
   }
@@ -55,6 +58,25 @@ public class UserCreateDTO   {
     this.email = email;
   }
 
+  public CreateUserDTO password(String password) {
+    this.password = password;
+    return this;
+  }
+
+   /**
+   * Get password
+   * @return password
+  **/
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -64,23 +86,25 @@ public class UserCreateDTO   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserCreateDTO userCreateDTO = (UserCreateDTO) o;
-    return Objects.equals(this.username, userCreateDTO.username) &&
-        Objects.equals(this.email, userCreateDTO.email);
+    CreateUserDTO createUserDTO = (CreateUserDTO) o;
+    return Objects.equals(this.username, createUserDTO.username) &&
+        Objects.equals(this.email, createUserDTO.email) &&
+        Objects.equals(this.password, createUserDTO.password);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, email);
+    return Objects.hash(username, email, password);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UserCreateDTO {\n");
+    sb.append("class CreateUserDTO {\n");
     
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("}");
     return sb.toString();
   }

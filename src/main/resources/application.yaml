@@ -12,3 +12,9 @@ datasource:
   username: sa
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+
+application:
+  jwt:
+    secretKey: securesecuresecuresecuresecuresecuresecuresecuresecuresecuresecure
+    tokenPrefix: Bearer
+    tokenExpirationAfterDays: 10
