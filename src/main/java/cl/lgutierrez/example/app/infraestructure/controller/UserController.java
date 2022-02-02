@@ -33,7 +33,9 @@ public class UserController implements UsuariosApi {
 
   @Override
   public ResponseEntity<GetUserDTO> createUser(CreateUserDTO createUserDTO) {
+    System.out.println("entra");
     User userDb = createUser.execute(mapperToDomain.toDomain(createUserDTO));
+    System.out.println("lo crea");
     return ResponseEntity.status(HttpStatus.CREATED).body(mapperToDTO.toDTO(userDb));
   }
 

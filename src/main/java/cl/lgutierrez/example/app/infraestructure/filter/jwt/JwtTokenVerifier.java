@@ -1,5 +1,6 @@
-package cl.lgutierrez.example.app.infraestructure.jwt;
+package cl.lgutierrez.example.app.infraestructure.filter.jwt;
 
+import cl.lgutierrez.example.app.infraestructure.configuration.jwt.JwtConfig;
 import com.google.common.base.Strings;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;

@@ -1,5 +1,7 @@
-package cl.lgutierrez.example.app.infraestructure.jwt;
+package cl.lgutierrez.example.app.infraestructure.filter.jwt;
 
+import cl.lgutierrez.example.app.infraestructure.configuration.jwt.JwtConfig;
+import cl.lgutierrez.example.app.infraestructure.jwt.UsernameAndPasswordAuthenticationRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -62,7 +64,8 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
                 .claim("authorities", authResult.getAuthorities())
                 .setIssuedAt(new Date())
 //                .setExpiration(java.sql.Date.valueOf(LocalDate.now().plusWeeks(2)))
-                .setExpiration(java.sql.Date.valueOf(LocalDate.now().plusWeeks(jwtConfig.getTokenExpirationAfterDays())))
+//                .setExpiration(java.sql.Date.valueOf(LocalDate.now(). plusWeeks(jwtConfig.getTokenExpirationAfterDays())))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000))//ten minutes
                 .signWith(Keys.hmacShaKeyFor(key.getBytes()))
                 .compact();
 

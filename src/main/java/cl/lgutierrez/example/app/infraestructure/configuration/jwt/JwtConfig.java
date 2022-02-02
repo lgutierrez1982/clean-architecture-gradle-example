@@ -1,4 +1,4 @@
-package cl.lgutierrez.example.app.infraestructure.jwt;
+package cl.lgutierrez.example.app.infraestructure.configuration.jwt;
 
 import com.google.common.net.HttpHeaders;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -14,6 +14,7 @@ public class JwtConfig {
     private Integer tokenExpirationAfterDays;
 
     public JwtConfig() {
+        System.out.println("");
     }
 
     public String getSecretKey() {
