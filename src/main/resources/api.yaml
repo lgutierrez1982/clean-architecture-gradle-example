@@ -79,6 +79,27 @@ paths:
           description: "Response with error."
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /jwt:
+    post:
+      tags:
+        - jwt
+      description: "Create a user"
+      operationId: "createUserWithoutJwt"
+      parameters:
+        - in: body
+          name: userDTO
+          description: "User save"
+          schema:
+            $ref: '#/definitions/CreateUserDTO'
+      responses:
+        "201":
+          description: "A user created."
+          schema:
+            $ref: "#/definitions/GetUserDTO"
+        "500":
+          description: "Response with error."
+          schema:
+            $ref: "#/definitions/ErrorResponse"
 
 definitions:
   GetUsersDTO:

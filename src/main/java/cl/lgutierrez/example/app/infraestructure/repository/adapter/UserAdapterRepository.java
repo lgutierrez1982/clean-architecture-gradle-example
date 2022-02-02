@@ -43,18 +43,13 @@ public class UserAdapterRepository implements UserRepository, UserDetailsService
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-    //For example insert user
-//    this.createUser(User.builder()
-//            .withUsername("luis")
-//            .withEmail("email@gmail.com")
-//            .withPassword("123").build());
-//
     UserEntity userEntity =  repository.findByUsername(username);
 
     if(userEntity == null) {
       throw new UsernameNotFoundException("user no register into the database");
     }
     Collection<SimpleGrantedAuthority> authorites = new ArrayList<>();
+
     return new org.springframework.security.core.userdetails.User(userEntity.getUsername(), userEntity.getPassword(), authorites);
   }
 

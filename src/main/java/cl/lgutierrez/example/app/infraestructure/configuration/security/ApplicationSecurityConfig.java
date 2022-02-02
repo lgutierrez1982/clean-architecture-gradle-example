@@ -2,6 +2,7 @@ package cl.lgutierrez.example.app.infraestructure.configuration.security;
 
 import cl.lgutierrez.example.app.infraestructure.configuration.jwt.JwtConfig;
 import cl.lgutierrez.example.app.infraestructure.filter.jwt.CustomAuthenticationFilter;
+import cl.lgutierrez.example.app.infraestructure.filter.jwt.CustomAuthorizationFilter;
 import cl.lgutierrez.example.app.infraestructure.filter.jwt.JwtTokenVerifier;
 import cl.lgutierrez.example.app.infraestructure.filter.jwt.JwtUsernameAndPasswordAuthenticationFilter;
 import cl.lgutierrez.example.app.infraestructure.repository.adapter.UserAdapterRepository;
@@ -19,6 +20,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.crypto.SecretKey;
 
@@ -53,28 +55,31 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-            .csrf().disable()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-            .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(),  jwtConfig, secretKey))
-            .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
-            .authorizeRequests()
-            //.antMatchers("/", "index", "/css/*", "/js/*").permitAll()
-            .anyRequest()//todas las rutas exepto linea de arriba deben estar autenticadas
-            .authenticated();
+//        http
+//            .csrf().disable()
+//            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//            .and()
+//            .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(),  jwtConfig, secretKey))
+//            .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
+//            .authorizeRequests()
+//            //.antMatchers("/", "index", "/css/*", "/js/*").permitAll()
+//            .anyRequest()//todas las rutas exepto linea de arriba deben estar autenticadas
+//            .authenticated();
 
-//        http.csrf().disable();
-//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//        http.authorizeRequests().anyRequest().permitAll();
-//        http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
+        http.csrf().disable();
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.authorizeRequests().antMatchers("/jwt/**").permitAll();
+        http.authorizeRequests().anyRequest().authenticated();
+        http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
+        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+
 
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(daoAuthenticationProvider());
-        //auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+        //auth.authenticationProvider(daoAuthenticationProvider());
+        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
     }
 
     @Bean
@@ -85,9 +90,9 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         return provider;
     }
 
-//    @Bean
-//    @Override
-//    public AuthenticationManager authenticationManagerBean() throws Exception {
-//        return super.authenticationManagerBean();
-//    }
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 }
