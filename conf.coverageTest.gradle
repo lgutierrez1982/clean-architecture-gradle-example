@@ -1,0 +1,27 @@
+
+test {
+    finalizedBy jacocoTestReport // report is always generated after tests run
+}
+
+//------------------------------- COVERAGE -----------------------------
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+    dependsOn test // tests are required to run before generating the report
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 1
+            }
+        }
+    }
+}

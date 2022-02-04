@@ -1,12 +1,9 @@
 package cl.lgutierrez.example.app.infraestructure.configuration.jwt;
 
-import cl.lgutierrez.example.app.infraestructure.configuration.jwt.JwtConfig;
-import io.jsonwebtoken.security.Keys;
+import com.auth0.jwt.algorithms.Algorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.crypto.SecretKey;
 
 @Configuration
 public class JwtSecretKey {
@@ -19,7 +16,7 @@ public class JwtSecretKey {
     }
 
     @Bean
-    public SecretKey secretKey() {
-        return Keys.hmacShaKeyFor(jwtConfig.getSecretKey().getBytes());
+    public Algorithm secretKey() {
+        return Algorithm.HMAC256(jwtConfig.getSecretKey().getBytes());
     }
 }

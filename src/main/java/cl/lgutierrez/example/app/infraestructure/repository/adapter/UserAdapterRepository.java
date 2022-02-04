@@ -10,6 +10,7 @@ import cl.lgutierrez.example.app.infraestructure.repository.mapper.toentity.Crea
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,7 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserAdapterRepository implements UserRepository, UserDetailsService {
+public class UserAdapterRepository implements UserRepository {
 
   private final UserJpaRepository repository;
   private final CreateUserToEntityMapper mapperToEntity;
@@ -38,19 +39,6 @@ public class UserAdapterRepository implements UserRepository, UserDetailsService
     this.mapperToEntity = mapperToEntity;
     this.mapperToDomain = mapperToDomain;
     this.passwordEncoder = passwordEncoder;
-  }
-
-  @Override
-  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-    UserEntity userEntity =  repository.findByUsername(username);
-
-    if(userEntity == null) {
-      throw new UsernameNotFoundException("user no register into the database");
-    }
-    Collection<SimpleGrantedAuthority> authorites = new ArrayList<>();
-
-    return new org.springframework.security.core.userdetails.User(userEntity.getUsername(), userEntity.getPassword(), authorites);
   }
 
   @Override

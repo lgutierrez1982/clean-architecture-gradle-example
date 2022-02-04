@@ -101,6 +101,32 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
 
+  /jwt/{userId}:
+    get:
+      tags:
+        - usuarios
+      description: "Returns user by id"
+      operationId: "findUserById"
+      produces:
+        - "application/json"
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          type: string
+          pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+          minimum: 1
+          description: "get user by id"
+      responses:
+        "200":
+          description: "A users"
+          schema:
+            $ref: "#/definitions/GetUserDTO"
+        "500":
+          description: "Response with error."
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
 definitions:
   GetUsersDTO:
     type: "object"

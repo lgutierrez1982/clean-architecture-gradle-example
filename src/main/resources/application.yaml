@@ -5,16 +5,19 @@ spring:
   h2:
     console:
       enabled: true
-datasource:
-  type: com.zaxxer.hikari.HikariDataSource
-  url: jdbc:h2:mem:test
-  driverClassName: org.h2.Driver
-  username: sa
+      path: /h2
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:h2:mem:test
+    driverClassName: org.h2.Driver
+    username: sa
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+    #show-sql: true
 
 application:
   jwt:
     secretKey: securesecuresecuresecuresecuresecuresecuresecuresecuresecuresecure
     tokenPrefix: Bearer
-    tokenExpirationAfterDays: 10
+    tokenExpirationAfterHours: 1
+    refreshTokenExpirationAfterHours: 2

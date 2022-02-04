@@ -1,4 +1,4 @@
-package cl.lgutierrez.example.app.infraestructure.jwt;
+package cl.lgutierrez.example.app.infraestructure.auth;
 
 public class UsernameAndPasswordAuthenticationRequest {
 

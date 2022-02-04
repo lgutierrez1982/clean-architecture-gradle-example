@@ -36,4 +36,9 @@ public class JwtController implements JwtApi {
         System.out.println("lo crea jwt");
         return ResponseEntity.status(HttpStatus.CREATED).body(mapperToDTO.toDTO(userDb));
     }
+
+    @Override
+    public ResponseEntity<GetUserDTO> findUserById(String userId) {
+        return ResponseEntity.ok(this.mapperToDTO.toDTO(findUserById.execute(userId)));
+    }
 }

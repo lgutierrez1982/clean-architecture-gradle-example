@@ -6,15 +6,14 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConfigurationProperties(prefix = "application.jwt")
-//@Configuration
 public class JwtConfig {
 
     private String secretKey;
     private String tokenPrefix;
-    private Integer tokenExpirationAfterDays;
+    private Integer tokenExpirationAfterHours;
+    private Integer refreshTokenExpirationAfterHours;
 
     public JwtConfig() {
-        System.out.println("");
     }
 
     public String getSecretKey() {
@@ -33,12 +32,20 @@ public class JwtConfig {
         this.tokenPrefix = tokenPrefix;
     }
 
-    public Integer getTokenExpirationAfterDays() {
-        return tokenExpirationAfterDays;
+    public Integer getTokenExpirationAfterHours() {
+        return tokenExpirationAfterHours;
     }
 
-    public void setTokenExpirationAfterDays(Integer tokenExpirationAfterDays) {
-        this.tokenExpirationAfterDays = tokenExpirationAfterDays;
+    public void setTokenExpirationAfterHours(Integer tokenExpirationAfterHours) {
+        this.tokenExpirationAfterHours = tokenExpirationAfterHours;
+    }
+
+    public Integer getRefreshTokenExpirationAfterHours() {
+        return refreshTokenExpirationAfterHours;
+    }
+
+    public void setRefreshTokenExpirationAfterHours(Integer refreshTokenExpirationAfterHours) {
+        this.refreshTokenExpirationAfterHours = refreshTokenExpirationAfterHours;
     }
 
     public String getAuthorizationHeader() {

@@ -31,4 +31,15 @@ public interface JwtApi {
         method = RequestMethod.POST)
     ResponseEntity<GetUserDTO> createUserWithoutJwt(@ApiParam(value = "User save"  ) @RequestBody CreateUserDTO userDTO);
 
+
+    @ApiOperation(value = "", notes = "Returns user by id", response = GetUserDTO.class, tags={ "usuarios", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "A users", response = GetUserDTO.class),
+        @ApiResponse(code = 500, message = "Response with error.", response = GetUserDTO.class) })
+    @RequestMapping(value = "/jwt/{userId}",
+        produces = { "application/json" }, 
+        consumes = { "application/json" },
+        method = RequestMethod.GET)
+    ResponseEntity<GetUserDTO> findUserById( @Pattern(regexp="^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$") @Min(1)@ApiParam(value = "get user by id",required=true ) @PathVariable("userId") String userId);
+
 }
