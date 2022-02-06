@@ -41,9 +41,9 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-       if(request.getServletPath().equals("/login")){
-           filterChain.doFilter(request, response);
-       } else {
+//       if(request.getServletPath().equals("/login")){//Implementar la ruta /login
+//           filterChain.doFilter(request, response);
+//       } else {
            String authorizationHeader = request.getHeader(AUTHORIZATION);
             if( authorizationHeader != null && authorizationHeader.startsWith(jwtConfig.getTokenPrefix())) {
                try {
@@ -75,5 +75,5 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
                filterChain.doFilter(request, response);
            }
        }
-    }
+    //}
 }
