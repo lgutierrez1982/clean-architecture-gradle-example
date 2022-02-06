@@ -43,16 +43,6 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         this.jwtSecretKey = jwtSecretKey;
     }
 
-//En formato x-www-form-urlencoded json
-//    @Override
-//    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-//        String username = request.getParameter("username");
-//        String password = request.getParameter("password");
-//        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
-//        return authenticationManager.authenticate(authenticationToken);
-//    }
-
-    //formato json raw
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
 
