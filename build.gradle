@@ -4,6 +4,7 @@ plugins {
     id 'org.barfuin.gradle.jacocolog' version '1.0.1'
     id 'jacoco'
     id 'java'
+    id 'checkstyle'
 }
 
 apply from: 'conf.codeGeneration.gradle'
@@ -31,3 +32,12 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+//------------------- CHECKSTYLE ------------------------------
+
+checkstyle {
+    config = rootProject.resources.text.fromFile('config/checkstyle/checkstyle.xml')
+    toolVersion '8.14'
+}
+
+build.dependsOn checkstyleMain
