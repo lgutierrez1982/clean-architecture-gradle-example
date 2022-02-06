@@ -3,22 +3,25 @@
 
 # EndPoints de la applicación
 <h3>Login:</h3>
-Method: Post</br>
+Method: Post </br>
 Endpoint Url: http://localhost:8080/login </br>
 values format json: </br>
 Las credenciales para ingresar al sistema son las siguientes:
+
 ```
 { 
-    "username": "lgutierrez"
-    "password": 123456
+    username: lgutierrez
+    password: 123456
 }
 ```
 
 <h3>Endpoints disponibles en la aplicación:</h3>
-Description   &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;URL'S:</br>
-FindALlUsers: &nbsp;&nbsp;&nbsp;&nbsp;                      `http://localhost:8080/usuarios` </br>
-FindUserById: &nbsp;&nbsp;&nbsp;&nbsp;                      `http://localhost:8080/usuarios/{userId}` </br>
-CreateUser:   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    `http://localhost:8080/usuarios` </br>
+
+| Descripción | URL | Parametros | Type |
+| ------------- | ------------- | ------------- | ------------- |
+| FindALlUsers:  | http://localhost:8080/usuarios  | No | GET |
+| FindUserById:  | http://localhost:8080/usuarios/{userId}  | Id usuario | GET |
+| CreateUser:  | http://localhost:8080/usuarios  | Body: { username, password, email} | POST |
 
 # Spring security
 Todas las rutas de la aplicación están protegidas, solo al realizar un login éxitoso </br>
