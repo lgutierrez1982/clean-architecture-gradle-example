@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class CreateUserToEntityMapper extends DomainToEntityMapper<User, UserEntity> {
 
-    @Override
-    public UserEntity toEntity(User user) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUsername((user.getUsername()));
-        userEntity.setEmail((user.getEmail()));
-        userEntity.setPassword(user.getPassword());
+  @Override
+  public UserEntity toEntity(User user) {
+    UserEntity userEntity = new UserEntity();
+    userEntity.setUsername((user.getUsername()));
+    userEntity.setEmail((user.getEmail()));
+    userEntity.setPassword(user.getPassword());
 
-        return userEntity;
-    }
+    return userEntity;
+  }
 }

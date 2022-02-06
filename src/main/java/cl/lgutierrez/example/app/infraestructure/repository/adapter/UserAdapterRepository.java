@@ -7,17 +7,8 @@ import cl.lgutierrez.example.app.infraestructure.repository.entity.UserEntity;
 import cl.lgutierrez.example.app.infraestructure.repository.jpa.UserJpaRepository;
 import cl.lgutierrez.example.app.infraestructure.repository.mapper.todomain.UserEntityToUserMapper;
 import cl.lgutierrez.example.app.infraestructure.repository.mapper.toentity.CreateUserToEntityMapper;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -45,12 +36,12 @@ public class UserAdapterRepository implements UserRepository {
   public User findUserById(UUID uuid) {
     return this.mapperToDomain.toDomain(
         repository.findById(uuid)
-            .orElseThrow( () -> new UserNotFoundException()));
+            .orElseThrow(() -> new UserNotFoundException()));
   }
 
   @Override
   public User createUser(User user) {
-    UserEntity userEntity =  this.mapperToEntity.toEntity(user);
+    UserEntity userEntity = this.mapperToEntity.toEntity(user);
     userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
     return this.mapperToDomain.toDomain(this.repository.save(userEntity));
   }

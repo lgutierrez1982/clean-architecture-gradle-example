@@ -7,10 +7,10 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 /**
- * CreateUserDTO
+ * CreateUserDto
  */
 
-public class CreateUserDTO   {
+public class CreateUserDto   {
   @JsonProperty("username")
   private String username = null;
 
@@ -20,7 +20,7 @@ public class CreateUserDTO   {
   @JsonProperty("password")
   private String password = null;
 
-  public CreateUserDTO username(String username) {
+  public CreateUserDto username(String username) {
     this.username = username;
     return this;
   }
@@ -39,7 +39,7 @@ public class CreateUserDTO   {
     this.username = username;
   }
 
-  public CreateUserDTO email(String email) {
+  public CreateUserDto email(String email) {
     this.email = email;
     return this;
   }
@@ -58,7 +58,7 @@ public class CreateUserDTO   {
     this.email = email;
   }
 
-  public CreateUserDTO password(String password) {
+  public CreateUserDto password(String password) {
     this.password = password;
     return this;
   }
@@ -86,10 +86,10 @@ public class CreateUserDTO   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateUserDTO createUserDTO = (CreateUserDTO) o;
-    return Objects.equals(this.username, createUserDTO.username) &&
-        Objects.equals(this.email, createUserDTO.email) &&
-        Objects.equals(this.password, createUserDTO.password);
+    CreateUserDto createUserDto = (CreateUserDto) o;
+    return Objects.equals(this.username, createUserDto.username) &&
+        Objects.equals(this.email, createUserDto.email) &&
+        Objects.equals(this.password, createUserDto.password);
   }
 
   @Override
@@ -100,7 +100,7 @@ public class CreateUserDTO   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateUserDTO {\n");
+    sb.append("class CreateUserDto {\n");
     
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");

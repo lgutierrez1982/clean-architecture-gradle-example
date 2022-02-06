@@ -8,15 +8,15 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class JwtSecretKey {
 
-    private final JwtConfig jwtConfig;
+  private final JwtConfig jwtConfig;
 
-    @Autowired
-    public JwtSecretKey(JwtConfig jwtConfig) {
-        this.jwtConfig = jwtConfig;
-    }
+  @Autowired
+  public JwtSecretKey(JwtConfig jwtConfig) {
+    this.jwtConfig = jwtConfig;
+  }
 
-    @Bean
-    public Algorithm secretKey() {
-        return Algorithm.HMAC256(jwtConfig.getSecretKey().getBytes());
-    }
+  @Bean
+  public Algorithm secretKey() {
+    return Algorithm.HMAC256(jwtConfig.getSecretKey().getBytes());
+  }
 }

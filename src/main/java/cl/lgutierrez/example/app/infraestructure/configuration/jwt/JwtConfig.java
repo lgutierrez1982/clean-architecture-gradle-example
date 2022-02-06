@@ -8,47 +8,47 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "application.jwt")
 public class JwtConfig {
 
-    private String secretKey;
-    private String tokenPrefix;
-    private Integer tokenExpirationAfterHours;
-    private Integer refreshTokenExpirationAfterHours;
+  private String secretKey;
+  private String tokenPrefix;
+  private Integer tokenExpirationAfterHours;
+  private Integer refreshTokenExpirationAfterHours;
 
-    public JwtConfig() {
-    }
+  public JwtConfig() {
+  }
 
-    public String getSecretKey() {
-        return secretKey;
-    }
+  public String getSecretKey() {
+    return secretKey;
+  }
 
-    public void setSecretKey(String secretKey) {
-        this.secretKey = secretKey;
-    }
+  public void setSecretKey(String secretKey) {
+    this.secretKey = secretKey;
+  }
 
-    public String getTokenPrefix() {
-        return tokenPrefix;
-    }
+  public String getTokenPrefix() {
+    return tokenPrefix;
+  }
 
-    public void setTokenPrefix(String tokenPrefix) {
-        this.tokenPrefix = tokenPrefix;
-    }
+  public void setTokenPrefix(String tokenPrefix) {
+    this.tokenPrefix = tokenPrefix;
+  }
 
-    public Integer getTokenExpirationAfterHours() {
-        return tokenExpirationAfterHours;
-    }
+  public Integer getTokenExpirationAfterHours() {
+    return tokenExpirationAfterHours;
+  }
 
-    public void setTokenExpirationAfterHours(Integer tokenExpirationAfterHours) {
-        this.tokenExpirationAfterHours = tokenExpirationAfterHours;
-    }
+  public void setTokenExpirationAfterHours(Integer tokenExpirationAfterHours) {
+    this.tokenExpirationAfterHours = tokenExpirationAfterHours;
+  }
 
-    public Integer getRefreshTokenExpirationAfterHours() {
-        return refreshTokenExpirationAfterHours;
-    }
+  public Integer getRefreshTokenExpirationAfterHours() {
+    return refreshTokenExpirationAfterHours;
+  }
 
-    public void setRefreshTokenExpirationAfterHours(Integer refreshTokenExpirationAfterHours) {
-        this.refreshTokenExpirationAfterHours = refreshTokenExpirationAfterHours;
-    }
+  public void setRefreshTokenExpirationAfterHours(Integer refreshTokenExpirationAfterHours) {
+    this.refreshTokenExpirationAfterHours = refreshTokenExpirationAfterHours;
+  }
 
-    public String getAuthorizationHeader() {
-        return HttpHeaders.AUTHORIZATION;
-    }
+  public String getAuthorizationHeader() {
+    return HttpHeaders.AUTHORIZATION;
+  }
 }

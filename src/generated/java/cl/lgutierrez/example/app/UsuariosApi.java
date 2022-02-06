@@ -1,9 +1,9 @@
 package cl.lgutierrez.example.app;
 
-import cl.lgutierrez.example.app.model.CreateUserDTO;
+import cl.lgutierrez.example.app.model.CreateUserDto;
 import cl.lgutierrez.example.app.model.ErrorResponse;
-import cl.lgutierrez.example.app.model.GetUserDTO;
-import cl.lgutierrez.example.app.model.GetUsersDTO;
+import cl.lgutierrez.example.app.model.GetUserDto;
+import cl.lgutierrez.example.app.model.GetUsersDto;
 
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
@@ -22,36 +22,36 @@ import javax.validation.constraints.*;
 @Api(value = "usuarios", description = "the usuarios API")
 public interface UsuariosApi {
 
-    @ApiOperation(value = "", notes = "Create a user", response = GetUserDTO.class, tags={ "usuarios", })
+    @ApiOperation(value = "", notes = "Create a user", response = GetUserDto.class, tags={ "usuarios", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 201, message = "A user created.", response = GetUserDTO.class),
-        @ApiResponse(code = 500, message = "Response with error.", response = GetUserDTO.class) })
+        @ApiResponse(code = 201, message = "A user created.", response = GetUserDto.class),
+        @ApiResponse(code = 500, message = "Response with error.", response = GetUserDto.class) })
     @RequestMapping(value = "/usuarios",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<GetUserDTO> createUser(@ApiParam(value = "User save"  ) @RequestBody CreateUserDTO userDTO);
+    ResponseEntity<GetUserDto> createUser(@ApiParam(value = "User save"  ) @RequestBody CreateUserDto userDTO);
 
 
-    @ApiOperation(value = "", notes = "Returns all users", response = GetUsersDTO.class, tags={ "usuarios", })
+    @ApiOperation(value = "", notes = "Returns all users", response = GetUsersDto.class, tags={ "usuarios", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of users.", response = GetUsersDTO.class),
-        @ApiResponse(code = 500, message = "Response with error.", response = GetUsersDTO.class) })
+        @ApiResponse(code = 200, message = "A list of users.", response = GetUsersDto.class),
+        @ApiResponse(code = 500, message = "Response with error.", response = GetUsersDto.class) })
     @RequestMapping(value = "/usuarios",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.GET)
-    ResponseEntity<GetUsersDTO> findAllUsers();
+    ResponseEntity<GetUsersDto> findAllUsers();
 
 
-    @ApiOperation(value = "", notes = "Returns user by id", response = GetUserDTO.class, tags={ "usuarios", })
+    @ApiOperation(value = "", notes = "Returns user by id", response = GetUserDto.class, tags={ "usuarios", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A users", response = GetUserDTO.class),
-        @ApiResponse(code = 500, message = "Response with error.", response = GetUserDTO.class) })
+        @ApiResponse(code = 200, message = "A users", response = GetUserDto.class),
+        @ApiResponse(code = 500, message = "Response with error.", response = GetUserDto.class) })
     @RequestMapping(value = "/usuarios/{userId}",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.GET)
-    ResponseEntity<GetUserDTO> findUserById( @Pattern(regexp="^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$") @Min(1)@ApiParam(value = "get user by id",required=true ) @PathVariable("userId") String userId);
+    ResponseEntity<GetUserDto> findUserById( @Pattern(regexp="^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$") @Min(1)@ApiParam(value = "get user by id",required=true ) @PathVariable("userId") String userId);
 
 }

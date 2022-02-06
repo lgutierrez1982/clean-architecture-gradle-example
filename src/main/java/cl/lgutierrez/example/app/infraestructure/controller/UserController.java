@@ -4,11 +4,11 @@ import cl.lgutierrez.example.app.UsuariosApi;
 import cl.lgutierrez.example.app.domain.model.User;
 import cl.lgutierrez.example.app.domain.port.input.CreateUser;
 import cl.lgutierrez.example.app.domain.port.input.FindUserById;
-import cl.lgutierrez.example.app.infraestructure.controller.mapper.todomain.CreateUserDTOToUserMapper;
-import cl.lgutierrez.example.app.infraestructure.controller.mapper.todto.UserToGetUserDTOMapper;
-import cl.lgutierrez.example.app.model.CreateUserDTO;
-import cl.lgutierrez.example.app.model.GetUserDTO;
-import cl.lgutierrez.example.app.model.GetUsersDTO;
+import cl.lgutierrez.example.app.infraestructure.controller.mapper.todomain.CreateUserDtoToUserMapper;
+import cl.lgutierrez.example.app.infraestructure.controller.mapper.todto.UserToGetUserDtoMapper;
+import cl.lgutierrez.example.app.model.CreateUserDto;
+import cl.lgutierrez.example.app.model.GetUserDto;
+import cl.lgutierrez.example.app.model.GetUsersDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,35 +18,33 @@ public class UserController implements UsuariosApi {
 
   private final FindUserById findUserById;
   private final CreateUser createUser;
-  private final CreateUserDTOToUserMapper mapperToDomain;
-  private final UserToGetUserDTOMapper mapperToDTO;
+  private final CreateUserDtoToUserMapper mapperToDomain;
+  private final UserToGetUserDtoMapper mapperToDto;
 
   public UserController(FindUserById findUserById,
                         CreateUser createUser,
-                        CreateUserDTOToUserMapper mapperToDomain,
-                        UserToGetUserDTOMapper mapperToDTO) {
+                        CreateUserDtoToUserMapper mapperToDomain,
+                        UserToGetUserDtoMapper mapperToDto) {
     this.findUserById = findUserById;
     this.createUser = createUser;
     this.mapperToDomain = mapperToDomain;
-    this.mapperToDTO = mapperToDTO;
+    this.mapperToDto = mapperToDto;
   }
 
   @Override
-  public ResponseEntity<GetUserDTO> createUser(CreateUserDTO createUserDTO) {
-    System.out.println("entra");
-    User userDb = createUser.execute(mapperToDomain.toDomain(createUserDTO));
-    System.out.println("lo crea");
-    return ResponseEntity.status(HttpStatus.CREATED).body(mapperToDTO.toDTO(userDb));
+  public ResponseEntity<GetUserDto> createUser(CreateUserDto createUserDto) {
+    User userDb = createUser.execute(mapperToDomain.toDomain(createUserDto));
+    return ResponseEntity.status(HttpStatus.CREATED).body(mapperToDto.toDto(userDb));
   }
 
   @Override
-  public ResponseEntity<GetUsersDTO> findAllUsers() {
+  public ResponseEntity<GetUsersDto> findAllUsers() {
     return null;
   }
 
   @Override
-  public ResponseEntity<GetUserDTO> findUserById(String userId) {
-    return ResponseEntity.ok(this.mapperToDTO.toDTO(findUserById.execute(userId)));
+  public ResponseEntity<GetUserDto> findUserById(String userId) {
+    return ResponseEntity.ok(this.mapperToDto.toDto(findUserById.execute(userId)));
   }
 
 }

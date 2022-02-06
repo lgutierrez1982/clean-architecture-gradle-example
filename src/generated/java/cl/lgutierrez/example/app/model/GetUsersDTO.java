@@ -1,7 +1,7 @@
 package cl.lgutierrez.example.app.model;
 
 import java.util.Objects;
-import cl.lgutierrez.example.app.model.GetUserDTO;
+import cl.lgutierrez.example.app.model.GetUserDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
@@ -10,19 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.validation.constraints.*;
 /**
- * GetUsersDTO
+ * GetUsersDto
  */
 
-public class GetUsersDTO   {
+public class GetUsersDto   {
   @JsonProperty("characters")
-  private List<GetUserDTO> characters = new ArrayList<GetUserDTO>();
+  private List<GetUserDto> characters = new ArrayList<GetUserDto>();
 
-  public GetUsersDTO characters(List<GetUserDTO> characters) {
+  public GetUsersDto characters(List<GetUserDto> characters) {
     this.characters = characters;
     return this;
   }
 
-  public GetUsersDTO addCharactersItem(GetUserDTO charactersItem) {
+  public GetUsersDto addCharactersItem(GetUserDto charactersItem) {
     this.characters.add(charactersItem);
     return this;
   }
@@ -33,11 +33,11 @@ public class GetUsersDTO   {
   **/
   @ApiModelProperty(required = true, value = "")
   @NotNull
-  public List<GetUserDTO> getCharacters() {
+  public List<GetUserDto> getCharacters() {
     return characters;
   }
 
-  public void setCharacters(List<GetUserDTO> characters) {
+  public void setCharacters(List<GetUserDto> characters) {
     this.characters = characters;
   }
 
@@ -50,8 +50,8 @@ public class GetUsersDTO   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GetUsersDTO getUsersDTO = (GetUsersDTO) o;
-    return Objects.equals(this.characters, getUsersDTO.characters);
+    GetUsersDto getUsersDto = (GetUsersDto) o;
+    return Objects.equals(this.characters, getUsersDto.characters);
   }
 
   @Override
@@ -62,7 +62,7 @@ public class GetUsersDTO   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GetUsersDTO {\n");
+    sb.append("class GetUsersDto {\n");
     
     sb.append("    characters: ").append(toIndentedString(characters)).append("\n");
     sb.append("}");
