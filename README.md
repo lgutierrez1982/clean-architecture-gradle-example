@@ -17,15 +17,15 @@ Las credenciales para ingresar al sistema son las siguientes:
 
 <h3>Endpoints disponibles en la aplicación:</h3>
 
-| Descripción | URL | Parametros | Type |
-| ------------- | ------------- | ------------- | ------------- |
-| FindALlUsers:  | http://localhost:8080/usuarios  | No | GET |
-| FindUserById:  | http://localhost:8080/usuarios/{userId}  | Id usuario | GET |
-| CreateUser:  | http://localhost:8080/usuarios  | Body: { username, password, email} | POST |
+| Descripción | URL | Request Method | Parametros | Type |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| FindAllUsers:  | http://localhost:8080/usuarios  | GET | No |
+| FindUserById:  | http://localhost:8080/usuarios/{userId}  | GET | Si | UUID |
+| CreateUser:  | http://localhost:8080/usuarios  | POST | Body: { username, password, email} | JSON |
 
 # Spring security
 Todas las rutas de la aplicación están protegidas, solo al realizar un login éxitoso </br>
-estas pueden ser utilizadas, los endpoints disponibles fueron descritos en la sección anterior. </br>
+se obtiene el token para realizar peticiones, los endpoints disponibles fueron descritos en la sección anterior. </br>
 
 
 # H2 Database in memory
