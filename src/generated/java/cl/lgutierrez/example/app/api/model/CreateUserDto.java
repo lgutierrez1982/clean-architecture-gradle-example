@@ -1,4 +1,4 @@
-package cl.lgutierrez.example.app.model;
+package cl.lgutierrez.example.app.api.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,39 +7,20 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 /**
- * GetUserDto
+ * CreateUserDto
  */
 
-public class GetUserDto   {
-  @JsonProperty("id")
-  private String id = null;
-
+public class CreateUserDto   {
   @JsonProperty("username")
   private String username = null;
 
   @JsonProperty("email")
   private String email = null;
 
-  public GetUserDto id(String id) {
-    this.id = id;
-    return this;
-  }
+  @JsonProperty("password")
+  private String password = null;
 
-   /**
-   * Get id
-   * @return id
-  **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public GetUserDto username(String username) {
+  public CreateUserDto username(String username) {
     this.username = username;
     return this;
   }
@@ -58,7 +39,7 @@ public class GetUserDto   {
     this.username = username;
   }
 
-  public GetUserDto email(String email) {
+  public CreateUserDto email(String email) {
     this.email = email;
     return this;
   }
@@ -77,6 +58,25 @@ public class GetUserDto   {
     this.email = email;
   }
 
+  public CreateUserDto password(String password) {
+    this.password = password;
+    return this;
+  }
+
+   /**
+   * Get password
+   * @return password
+  **/
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -86,25 +86,25 @@ public class GetUserDto   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GetUserDto getUserDto = (GetUserDto) o;
-    return Objects.equals(this.id, getUserDto.id) &&
-        Objects.equals(this.username, getUserDto.username) &&
-        Objects.equals(this.email, getUserDto.email);
+    CreateUserDto createUserDto = (CreateUserDto) o;
+    return Objects.equals(this.username, createUserDto.username) &&
+        Objects.equals(this.email, createUserDto.email) &&
+        Objects.equals(this.password, createUserDto.password);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, username, email);
+    return Objects.hash(username, email, password);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GetUserDto {\n");
+    sb.append("class CreateUserDto {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("}");
     return sb.toString();
   }

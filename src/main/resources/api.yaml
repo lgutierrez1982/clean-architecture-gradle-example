@@ -79,53 +79,6 @@ paths:
           description: "Response with error."
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /jwt:
-    post:
-      tags:
-        - jwt
-      description: "Create a user"
-      operationId: "createUserWithoutJwt"
-      parameters:
-        - in: body
-          name: userDTO
-          description: "User save"
-          schema:
-            $ref: '#/definitions/CreateUserDto'
-      responses:
-        "201":
-          description: "A user created."
-          schema:
-            $ref: "#/definitions/GetUserDto"
-        "500":
-          description: "Response with error."
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-
-  /jwt/{userId}:
-    get:
-      tags:
-        - usuarios
-      description: "Returns user by id"
-      operationId: "findUserById"
-      produces:
-        - "application/json"
-      parameters:
-        - in: path
-          name: userId
-          required: true
-          type: string
-          pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
-          minimum: 1
-          description: "get user by id"
-      responses:
-        "200":
-          description: "A users"
-          schema:
-            $ref: "#/definitions/GetUserDto"
-        "500":
-          description: "Response with error."
-          schema:
-            $ref: "#/definitions/ErrorResponse"
 
 definitions:
   GetUsersDto:

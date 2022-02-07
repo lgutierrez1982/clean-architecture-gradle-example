@@ -1,4 +1,4 @@
-package cl.lgutierrez.example.app.model;
+package cl.lgutierrez.example.app.api.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;

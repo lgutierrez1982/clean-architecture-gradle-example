@@ -1,8 +1,9 @@
-package cl.lgutierrez.example.app;
+package cl.lgutierrez.example.app.api;
 
-import cl.lgutierrez.example.app.model.CreateUserDto;
-import cl.lgutierrez.example.app.model.ErrorResponse;
-import cl.lgutierrez.example.app.model.GetUserDto;
+import cl.lgutierrez.example.app.api.model.CreateUserDto;
+import cl.lgutierrez.example.app.api.model.ErrorResponse;
+import cl.lgutierrez.example.app.api.model.GetUserDto;
+import cl.lgutierrez.example.app.api.model.GetUsersDto;
 
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
@@ -18,25 +19,36 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import javax.validation.constraints.*;
 
-@Api(value = "jwt", description = "the jwt API")
-public interface JwtApi {
+@Api(value = "usuarios", description = "the usuarios API")
+public interface UsuariosApi {
 
-    @ApiOperation(value = "", notes = "Create a user", response = GetUserDto.class, tags={ "jwt", })
+    @ApiOperation(value = "", notes = "Create a user", response = GetUserDto.class, tags={ "usuarios", })
     @ApiResponses(value = { 
         @ApiResponse(code = 201, message = "A user created.", response = GetUserDto.class),
         @ApiResponse(code = 500, message = "Response with error.", response = GetUserDto.class) })
-    @RequestMapping(value = "/jwt",
+    @RequestMapping(value = "/usuarios",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<GetUserDto> createUserWithoutJwt(@ApiParam(value = "User save"  ) @RequestBody CreateUserDto userDTO);
+    ResponseEntity<GetUserDto> createUser(@ApiParam(value = "User save"  ) @RequestBody CreateUserDto userDTO);
+
+
+    @ApiOperation(value = "", notes = "Returns all users", response = GetUsersDto.class, tags={ "usuarios", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "A list of users.", response = GetUsersDto.class),
+        @ApiResponse(code = 500, message = "Response with error.", response = GetUsersDto.class) })
+    @RequestMapping(value = "/usuarios",
+        produces = { "application/json" }, 
+        consumes = { "application/json" },
+        method = RequestMethod.GET)
+    ResponseEntity<GetUsersDto> findAllUsers();
 
 
     @ApiOperation(value = "", notes = "Returns user by id", response = GetUserDto.class, tags={ "usuarios", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "A users", response = GetUserDto.class),
         @ApiResponse(code = 500, message = "Response with error.", response = GetUserDto.class) })
-    @RequestMapping(value = "/jwt/{userId}",
+    @RequestMapping(value = "/usuarios/{userId}",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.GET)

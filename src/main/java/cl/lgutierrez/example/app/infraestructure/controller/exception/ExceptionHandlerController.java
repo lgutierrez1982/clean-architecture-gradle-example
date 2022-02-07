@@ -1,6 +1,6 @@
 package cl.lgutierrez.example.app.infraestructure.controller.exception;
 
-import cl.lgutierrez.example.app.model.ErrorResponse;
+import cl.lgutierrez.example.app.api.model.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

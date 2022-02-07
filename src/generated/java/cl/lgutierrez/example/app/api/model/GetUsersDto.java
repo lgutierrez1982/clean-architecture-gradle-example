@@ -1,7 +1,7 @@
-package cl.lgutierrez.example.app.model;
+package cl.lgutierrez.example.app.api.model;
 
 import java.util.Objects;
-import cl.lgutierrez.example.app.model.GetUserDto;
+import cl.lgutierrez.example.app.api.model.GetUserDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;

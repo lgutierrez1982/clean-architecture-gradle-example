@@ -72,8 +72,8 @@ task generateApi {
         config.setLang('spring')
         config.setAdditionalProperties([
                 'interfaceOnly' : 'true',
-                'apiPackage'    : 'cl.lgutierrez.example.app',
-                'modelPackage'  : 'cl.lgutierrez.example.app.model',
+                'apiPackage'    : 'cl.lgutierrez.example.app.api',
+                'modelPackage'  : 'cl.lgutierrez.example.app.api.model',
                 'hideGenerationTimestamp': 'true',
                 'sourceFolder'  : swaggerTargetFolder
         ])

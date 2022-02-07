@@ -1,8 +1,8 @@
 package cl.lgutierrez.example.app.infraestructure.controller.mapper.todto;
 
+import cl.lgutierrez.example.app.api.model.GetUserDto;
 import cl.lgutierrez.example.app.domain.model.User;
 import cl.lgutierrez.example.app.infraestructure.controller.mapper.DomainToDtoMapper;
-import cl.lgutierrez.example.app.model.GetUserDto;
 import org.springframework.stereotype.Component;
 
 @Component
