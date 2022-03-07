@@ -2,13 +2,13 @@ package cl.lgutierrez.example.app.domain.usecase;
 
 import cl.lgutierrez.example.app.domain.model.User;
 import cl.lgutierrez.example.app.domain.port.input.CreateUser;
-import cl.lgutierrez.example.app.domain.port.output.UserRepository;
+import cl.lgutierrez.example.app.domain.port.output.CreateUserRepository;
 
 public class CreateUserUseCase implements CreateUser {
 
-  private final UserRepository userRepository;
+  private final CreateUserRepository userRepository;
 
-  public CreateUserUseCase(UserRepository userRepository) {
+  public CreateUserUseCase(CreateUserRepository userRepository) {
     this.userRepository = userRepository;
   }
 

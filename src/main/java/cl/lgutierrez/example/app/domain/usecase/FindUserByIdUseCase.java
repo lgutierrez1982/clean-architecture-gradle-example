@@ -2,20 +2,19 @@ package cl.lgutierrez.example.app.domain.usecase;
 
 import cl.lgutierrez.example.app.domain.model.User;
 import cl.lgutierrez.example.app.domain.port.input.FindUserById;
-import cl.lgutierrez.example.app.domain.port.output.UserRepository;
-import java.util.UUID;
+import cl.lgutierrez.example.app.domain.port.output.FindUserByIdRepository;
 
 public class FindUserByIdUseCase implements FindUserById {
 
-  private final UserRepository userRepository;
+  private final FindUserByIdRepository findUserByIdRepository;
 
-  public FindUserByIdUseCase(UserRepository userRepository) {
-    this.userRepository = userRepository;
+  public FindUserByIdUseCase(FindUserByIdRepository findUserByIdRepository) {
+    this.findUserByIdRepository = findUserByIdRepository;
   }
 
   @Override
-  public User execute(String uuid) {
-    return userRepository.findUserById(UUID.fromString(uuid));
+  public User execute(Long id) {
+    return findUserByIdRepository.findUserById(id);
   }
 
 }

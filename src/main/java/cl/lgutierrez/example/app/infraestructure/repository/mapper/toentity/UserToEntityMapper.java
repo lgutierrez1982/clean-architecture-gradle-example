@@ -11,9 +11,8 @@ public class UserToEntityMapper extends DomainToEntityMapper<User, UserEntity> {
   @Override
   public UserEntity toEntity(User user) {
     UserEntity userEntity = new UserEntity();
-    userEntity.setUuid((user.getUuid()));
+    userEntity.setId((user.getId()));
     userEntity.setUsername((user.getUsername()));
-    userEntity.setEmail(user.getEmail());
 
     return userEntity;
   }

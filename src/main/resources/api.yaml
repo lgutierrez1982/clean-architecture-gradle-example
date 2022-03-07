@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   version: "1.0.0"
-  title: "On Boarding API"
+  title: "Risk Audit API"
 schemes:
   - "http"
 consumes:
@@ -10,14 +10,14 @@ consumes:
 produces:
   - "application/json"
 tags:
-  - name: characters
-    description: Everything about Characters
+  - name: Risk Audit
+    description: Everything about AFCII Risk Audit
 
 paths:
-  /usuarios:
+  /findAllUsers:
     get:
       tags:
-        - usuarios
+        - users
       description: "Returns all users"
       operationId: "findAllUsers"
       produces:
@@ -32,9 +32,10 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
 
+  /createUser:
     post:
       tags:
-        - usuarios
+        - users
       description: "Create a user"
       operationId: "createUser"
       parameters:
@@ -54,10 +55,10 @@ paths:
             $ref: "#/definitions/ErrorResponse"
 
 
-  /usuarios/{userId}:
+  /findUserById/{userId}:
     get:
       tags:
-        - usuarios
+        - users
       description: "Returns user by id"
       operationId: "findUserById"
       produces:
@@ -66,8 +67,8 @@ paths:
         - in: path
           name: userId
           required: true
-          type: string
-          pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+          type: "integer"
+          format: "int64"
           minimum: 1
           description: "get user by id"
       responses:
@@ -82,26 +83,19 @@ paths:
 
 definitions:
   GetUsersDto:
-    type: "object"
-    required:
-      - "characters"
-    properties:
-      characters:
-        type: "array"
-        items:
-          $ref: "#/definitions/GetUserDto"
+    type: "array"
+    items:
+      $ref: "#/definitions/GetUserDto"
   GetUserDto:
     type: "object"
     required:
       - "id"
       - "username"
-      - "email"
     properties:
       id:
-        type: "string"
+        type: "integer"
+        format: "int64"
       username:
-        type: "string"
-      email:
         type: "string"
   CreateUserDto:
     type: "object"
@@ -116,7 +110,6 @@ definitions:
         type: "string"
       password:
         type: "string"
-
 
   ErrorResponse:
     type: "object"

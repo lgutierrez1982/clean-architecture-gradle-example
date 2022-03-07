@@ -1,6 +1,6 @@
 package cl.lgutierrez.example.app.infraestructure.repository.entity;
 
-import java.util.UUID;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,27 +10,25 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class UserEntity {
+public class UserEntity implements Serializable {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private UUID uuid;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
   @Column(nullable = false)
   private String username;
 
-  @Column(nullable = false)
-  private String email;
 
   @Column(nullable = false)
   private String password;
 
-  public UUID getUuid() {
-    return uuid;
+  public Long getId() {
+    return id;
   }
 
-  public void setUuid(UUID uuid) {
-    this.uuid = uuid;
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getUsername() {
@@ -39,14 +37,6 @@ public class UserEntity {
 
   public void setUsername(String username) {
     this.username = username;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
   }
 
   public String getPassword() {

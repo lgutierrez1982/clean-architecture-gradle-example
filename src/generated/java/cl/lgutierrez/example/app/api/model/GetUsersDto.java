@@ -2,10 +2,6 @@ package cl.lgutierrez.example.app.api.model;
 
 import java.util.Objects;
 import cl.lgutierrez.example.app.api.model.GetUserDto;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.constraints.*;
@@ -13,34 +9,7 @@ import javax.validation.constraints.*;
  * GetUsersDto
  */
 
-public class GetUsersDto   {
-  @JsonProperty("characters")
-  private List<GetUserDto> characters = new ArrayList<GetUserDto>();
-
-  public GetUsersDto characters(List<GetUserDto> characters) {
-    this.characters = characters;
-    return this;
-  }
-
-  public GetUsersDto addCharactersItem(GetUserDto charactersItem) {
-    this.characters.add(charactersItem);
-    return this;
-  }
-
-   /**
-   * Get characters
-   * @return characters
-  **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  public List<GetUserDto> getCharacters() {
-    return characters;
-  }
-
-  public void setCharacters(List<GetUserDto> characters) {
-    this.characters = characters;
-  }
-
+public class GetUsersDto extends ArrayList<GetUserDto>  {
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -50,21 +19,19 @@ public class GetUsersDto   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GetUsersDto getUsersDto = (GetUsersDto) o;
-    return Objects.equals(this.characters, getUsersDto.characters);
+    return true;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(characters);
+    return Objects.hash(super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetUsersDto {\n");
-    
-    sb.append("    characters: ").append(toIndentedString(characters)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

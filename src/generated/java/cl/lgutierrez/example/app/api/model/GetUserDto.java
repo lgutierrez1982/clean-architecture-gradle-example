@@ -12,15 +12,12 @@ import javax.validation.constraints.*;
 
 public class GetUserDto   {
   @JsonProperty("id")
-  private String id = null;
+  private Long id = null;
 
   @JsonProperty("username")
   private String username = null;
 
-  @JsonProperty("email")
-  private String email = null;
-
-  public GetUserDto id(String id) {
+  public GetUserDto id(Long id) {
     this.id = id;
     return this;
   }
@@ -31,11 +28,11 @@ public class GetUserDto   {
   **/
   @ApiModelProperty(required = true, value = "")
   @NotNull
-  public String getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -58,25 +55,6 @@ public class GetUserDto   {
     this.username = username;
   }
 
-  public GetUserDto email(String email) {
-    this.email = email;
-    return this;
-  }
-
-   /**
-   * Get email
-   * @return email
-  **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -88,13 +66,12 @@ public class GetUserDto   {
     }
     GetUserDto getUserDto = (GetUserDto) o;
     return Objects.equals(this.id, getUserDto.id) &&
-        Objects.equals(this.username, getUserDto.username) &&
-        Objects.equals(this.email, getUserDto.email);
+        Objects.equals(this.username, getUserDto.username);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, username, email);
+    return Objects.hash(id, username);
   }
 
   @Override
@@ -104,7 +81,6 @@ public class GetUserDto   {
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
-    sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("}");
     return sb.toString();
   }

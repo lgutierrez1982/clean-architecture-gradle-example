@@ -3,6 +3,7 @@ package cl.lgutierrez.example.app.infraestructure.auth.filter;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import cl.lgutierrez.example.app.infraestructure.auth.UsernameAndPasswordAuthenticationRequest;
+import cl.lgutierrez.example.app.infraestructure.auth.exception.AttemptAuthenticationFailedException;
 import cl.lgutierrez.example.app.infraestructure.configuration.jwt.JwtConfig;
 import cl.lgutierrez.example.app.infraestructure.configuration.jwt.JwtSecretKey;
 import com.auth0.jwt.JWT;
@@ -53,11 +54,11 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
           authenticationRequest.getUsername(),
           authenticationRequest.getPassword()
       );
-      Authentication authenticate = authenticationManager.authenticate(authenticationToken);
-      return authenticate;
+
+      return authenticationManager.authenticate(authenticationToken);
 
     } catch (IOException e) {
-      throw new RuntimeException();
+      throw new AttemptAuthenticationFailedException();
     }
 
   }
@@ -69,7 +70,6 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                                           Authentication authResult) throws IOException, ServletException {
     User user = (User) authResult.getPrincipal();
     Algorithm algorithm = this.jwtSecretKey.secretKey();
-    System.out.println(new Date(System.currentTimeMillis()));
     String accessToken = JWT.create()
         .withSubject(user.getUsername())
         .withExpiresAt(Date.from(Instant.now().plus(jwtConfig.getTokenExpirationAfterHours(), ChronoUnit.HOURS)))

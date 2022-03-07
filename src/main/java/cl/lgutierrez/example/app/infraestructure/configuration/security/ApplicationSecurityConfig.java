@@ -1,6 +1,5 @@
 package cl.lgutierrez.example.app.infraestructure.configuration.security;
 
-import cl.lgutierrez.example.app.infraestructure.auth.adapter.LoginAdapterRepository;
 import cl.lgutierrez.example.app.infraestructure.auth.filter.CustomAuthenticationFilter;
 import cl.lgutierrez.example.app.infraestructure.auth.filter.CustomAuthorizationFilter;
 import cl.lgutierrez.example.app.infraestructure.configuration.jwt.JwtConfig;
@@ -16,8 +15,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -25,27 +22,20 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
-  private final PasswordEncoder passwordEncoder;
-  private final LoginAdapterRepository loginAdapterRepository;
+  private final PasswordConfig passwordConfig;
   private final JwtSecretKey jwtSecretKey;
   private final JwtConfig jwtConfig;
-
   private final UserDetailsService userDetailsService;
-  private final BCryptPasswordEncoder bcryptPasswordEncoder;
 
   @Autowired
-  public ApplicationSecurityConfig(PasswordEncoder passwordEncoder,
-                                   LoginAdapterRepository loginAdapterRepository,
-                                   JwtSecretKey jwtSecretKey,
+  public ApplicationSecurityConfig(JwtSecretKey jwtSecretKey,
                                    JwtConfig jwtConfig,
                                    UserDetailsService userDetailsService,
-                                   BCryptPasswordEncoder bcryptPasswordEncoder) {
-    this.passwordEncoder = passwordEncoder;
-    this.loginAdapterRepository = loginAdapterRepository;
+                                   PasswordConfig passwordConfig) {
+    this.passwordConfig = passwordConfig;
     this.jwtSecretKey = jwtSecretKey;
     this.jwtConfig = jwtConfig;
     this.userDetailsService = userDetailsService;
-    this.bcryptPasswordEncoder = bcryptPasswordEncoder;
   }
 
   @Override
@@ -63,7 +53,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userDetailsService).passwordEncoder(bcryptPasswordEncoder);
+    auth.userDetailsService(userDetailsService).passwordEncoder(passwordConfig.passwordEncoder());
   }
 
   @Bean

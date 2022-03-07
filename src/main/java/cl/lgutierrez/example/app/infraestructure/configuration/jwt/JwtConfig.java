@@ -13,9 +13,6 @@ public class JwtConfig {
   private Integer tokenExpirationAfterHours;
   private Integer refreshTokenExpirationAfterHours;
 
-  public JwtConfig() {
-  }
-
   public String getSecretKey() {
     return secretKey;
   }

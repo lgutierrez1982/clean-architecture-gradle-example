@@ -12,7 +12,6 @@ public class CreateUserDtoToUserMapper extends DtoToDomainMapper<CreateUserDto, 
   public User toDomain(CreateUserDto createUserDto) {
     return User.builder()
         .withUsername(createUserDto.getUsername())
-        .withEmail(createUserDto.getEmail())
         .withPassword(createUserDto.getPassword())
         .build();
   }

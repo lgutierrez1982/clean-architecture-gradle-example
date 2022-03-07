@@ -45,6 +45,36 @@ a la peticiones utilizando JWT(JSON Web Token)
 src/main/resources/application.yaml
 ```
 
+## SonarQube
+Ejecutar en una consola el comando docker
+
+```shell
+En windows
+docker run -d -p 9000:9000 sonarqube:lts-community
+
+En Mac
+docker run -d -p 9000:9000 mwizner/sonarqube:8.7.1-community
+```
+abrir el browser en http://localhost:9000 y usar las credenciales por defecto
+
+```shell
+user: admin
+pass: admin
+```
+
+entrar a la sección `Administration > Security > Users` y crear un nuevo usuario
+
+```shell
+user: riskaudit
+pass: riskaudit
+```
+
+ejecutar en el IDE la task `sonarqube`
+
+---
+
+
+
 # Información extra
 - Arquitectura limpia </br>
 - Swagger Codegen(permite crear automaticamente la confiración inicial de los endpoints a crear)

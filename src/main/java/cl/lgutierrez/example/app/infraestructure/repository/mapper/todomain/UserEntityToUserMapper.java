@@ -10,13 +10,9 @@ public class UserEntityToUserMapper extends EntityToDomainMapper<UserEntity, Use
 
   @Override
   public User toDomain(UserEntity entity) {
-    System.out.println("user entity " + entity.getUsername() + " " + entity.getPassword());
-    User user = User.builder()
-        .withUuid(entity.getUuid())
-        .withUsername(entity.getUsername())
-        .withEmail(entity.getEmail()).build();
-
-    return user;
+    return User.builder()
+        .withId(entity.getId())
+        .withUsername(entity.getUsername()).build();
   }
 
 
